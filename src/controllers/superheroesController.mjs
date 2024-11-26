@@ -123,7 +123,10 @@ export async function obtenerSuperHeroePorIdController(req, res) {
     if (!superheroe) {
       return res.status(404).send('Superhéroe no encontrado');
     }
-    res.render('editSuperhero', { superheroe });
+    res.render('editSuperhero', { 
+      title: 'Editar Superhéroe', 
+      superheroe 
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener el superhéroe');

@@ -5,7 +5,7 @@ import methodOverride from 'method-override';
 import { fileURLToPath } from 'url';
 import { connectDB } from './src/config/dbConfig.mjs';
 import router from './src/routes/superHeroRoutes.mjs';
-import { obtenerTodosLosSuperHeroesDashboardController } from './src/controllers/superheroesController.mjs';
+import { obtenerTodosLosSuperHeroes } from './src/services/SuperHeroService.mjs'; // Asegúrate de que esta ruta sea correcta
 import flash from 'connect-flash';
 import session from 'express-session';
 import expressLayouts from 'express-ejs-layouts';
@@ -67,7 +67,18 @@ app.get('/', (req, res) => {
 app.use('/api', router);
 
 // Ruta para el dashboard
-app.get('/dashboard', obtenerTodosLosSuperHeroesDashboardController);
+app.get('/dashboard', async (req, res) => {
+  try {
+    const superheroes = await obtenerTodosLosSuperHeroes(); // Asegúrate de que esta función esté definida y sea correcta
+    res.render('dashboard', { 
+      title: 'Dashboard de Superhéroes', 
+      superheroes 
+    });
+  } catch (error) {
+    console.error('Error al obtener superhéroes:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
 
 // Ruta para agregar superhéroe
 app.get('/addSuperhero', (req, res) => {
