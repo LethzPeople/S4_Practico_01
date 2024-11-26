@@ -1,7 +1,7 @@
 <nav class="bg-yellow-300 p-4">
   <ul class="flex space-x-4">
-    <li><a href="/" class="text-black hover:text-green-500">Inicio</a></li>
-    <li><a href="/dashboard" class="text-black hover:text-green-500">Dashboard</a></li>
-    <li><a href="/addSuperhero" class="text-black hover:text-green-500">Agregar Superhéroe</a></li>
+    <li><a href="/" class="text-black uppercase <%= path === '/' ? 'active' : '' %>">Inicio</a></li>
+    <li><a href="/dashboard" class="text-black uppercase <%= path === '/dashboard' ? 'active' : '' %>">Dashboard</a></li>
+    <li><a href="/addSuperhero" class="text-black uppercase <%= path === '/addSuperhero' ? 'active' : '' %>">Agregar Superhéroe</a></li>
   </ul>
 </nav>

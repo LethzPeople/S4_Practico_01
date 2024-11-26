@@ -1,3 +1,23 @@
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif !important;
+  font-weight: bold;
+  background-image: url('images/7871873.jpg');
+  background-attachment: fixed; /* Esto hace que la imagen se quede fija mientras se hace scroll */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav ul li a {
+  position: relative; /* Necesario para posicionar la barra */
+}
+
+nav ul li a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -18px; /* Espacio entre el texto y la barra */
+  height: 3px; /* Altura de la barra */
+  background-color: black; /* Color de la barra */
 }

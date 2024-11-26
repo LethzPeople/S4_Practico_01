@@ -52,6 +52,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Añade este nuevo middleware
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
+
 // Conexión a la base de datos
 connectDB().catch(err => {
   console.error('Error al conectar a la base de datos:', err);
