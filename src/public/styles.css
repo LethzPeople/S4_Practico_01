@@ -17,7 +17,40 @@ nav ul li a.active::after {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -18px; /* Espacio entre el texto y la barra */
+  bottom: -25px; /* Espacio entre el texto y la barra */
   height: 3px; /* Altura de la barra */
   background-color: black; /* Color de la barra */
+}
+
+.main-container {
+  position: relative; /* Necesario para posicionar el texto en relación a este contenedor */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; /* Altura completa de la ventana */
+  width: 50%; 
+  margin: auto; 
+  overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
+
+}
+
+.main-container a.bg-black {
+  background-color: black !important; /* Asegúrate de que esto solo se aplique al botón */
+}
+
+.call-main {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.overlay-text {
+  position: absolute; /* Posiciona el texto sobre la imagen */
+  top: 50%; /* Centra verticalmente */
+  left: 75%; /* Mueve el texto más a la derecha; ajusta este valor según sea necesario */
+  transform: translate(-50%, -50%); /* Ajusta la posición para centrar verticalmente */
+  color: black; /* Color del texto */
+  text-align: center; /* Centra el texto */
+  padding: 10px; /* Espaciado alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados (opcional) */
+  font-size: 30px;
 }
