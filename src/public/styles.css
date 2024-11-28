@@ -1,15 +1,15 @@
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif !important;
   font-weight: bold;
-  background-image: url('images/7871873.jpg');
-  background-attachment: fixed; /* Esto hace que la imagen se quede fija mientras se hace scroll */
+  background-image: url('images/7871873.webp');
+  background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 nav ul li a {
-  position: relative; /* Necesario para posicionar la barra */
+  position: relative; 
 }
 
 nav ul li a.active::after {
@@ -17,41 +17,41 @@ nav ul li a.active::after {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -25px; /* Espacio entre el texto y la barra */
-  height: 3px; /* Altura de la barra */
-  background-color: black; /* Color de la barra */
+  bottom: -25px; 
+  height: 3px; 
+  background-color: black;
 }
 
 .main-container {
-  position: relative; /* Necesario para posicionar el texto en relación a este contenedor */
+  position: relative; 
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  height: 100vh; /* Altura completa de la ventana */
+  height: 100vh; 
   width: 50%; 
   margin: auto; 
-  overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
+  overflow: hidden; 
 
 }
 
 .main-container a.bg-black {
-  background-color: black !important; /* Asegúrate de que esto solo se aplique al botón */
+  background-color: black !important; 
 }
 
 .call-main {
-  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
-  height: auto; /* Mantiene la proporción de la imagen */
+  width: 100%; 
+  height: auto; 
 }
 
 .overlay-text {
-  position: absolute; /* Posiciona el texto sobre la imagen */
-  top: 50%; /* Centra verticalmente */
-  left: 75%; /* Mueve el texto más a la derecha; ajusta este valor según sea necesario */
-  transform: translate(-50%, -50%); /* Ajusta la posición para centrar verticalmente */
-  color: black; /* Color del texto */
-  text-align: center; /* Centra el texto */
-  padding: 10px; /* Espaciado alrededor del texto */
-  border-radius: 5px; /* Bordes redondeados (opcional) */
+  position: absolute; 
+  top: 50%; 
+  left: 75%; 
+  transform: translate(-50%, -50%); 
+  color: black; 
+  text-align: center; 
+  padding: 10px;
+  border-radius: 5px; 
   font-size: 30px;
 }
 
