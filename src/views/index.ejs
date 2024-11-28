@@ -10,9 +10,9 @@
   <div class="container mx-auto text-center">
     <h2 class="text-4xl font-bold mb-12 neon-text">Conoce nuestros Superheroes</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="p-6 border border-black bg-white">
+      <div class="card p-6 border border-black bg-white shadow-lg">
         <h3 class="text-xl font-semibold">Spider-Man</h3>
-        <img class="mt-4" src="/images/miles_profile.jpg" alt="Spider-Man"> <!-- Agregado mt-4 aquí -->
+        <img class="mt-4" src="/images/miles_profile.jpg" alt="Spider-Man">
         <p class="mt-4 text-left">
           Nombre: Miles Morales<br>
           Edad: 17 años<br>
@@ -23,10 +23,10 @@
           Enemigos: Powler
         </p>
       </div>
-      <div class="p-6 border border-black bg-white">
+      <div class="card p-6 border border-black bg-white shadow-lg">
         <h3 class="text-xl font-semibold">Slim Shady</h3>
-        <img class="pt-4" src="/images/slim_shady_profile.jpg" alt="Eminem">
-        <p class="text-left -ml-1 mt-4">
+        <img class="mt-4" src="/images/slim_shady_profile.jpg" alt="Eminem">
+        <p class="mt-4 text-left">
           Nombre: Marshall Bruce Mathers III<br>
           Edad: 50 años<br>
           Planeta: Tierra<br>
@@ -36,10 +36,10 @@
           Enemigos: Machine Gun Kelly
         </p>
       </div>
-      <div class="p-6 border border-black bg-white">
+      <div class="card p-6 border border-black bg-white shadow-lg">
         <h3 class="text-xl font-semibold">Raven</h3>
-        <img class="pt-4" src="/images/raven_profile.jpg" alt="Raven">
-        <p class="text-left -ml-1 mt-4">
+        <img class="mt-4" src="/images/raven_profile.jpg" alt="Raven">
+        <p class="mt-4 text-left">
           Nombre: Rachel Roth<br>
           Edad: 16 años<br>
           Planeta: Tierra<br>
@@ -52,5 +52,28 @@
     </div>
   </div>
 </section>
+<script>
+const cards = document.querySelectorAll('.card');
 
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const xPercent = (x / rect.width - 0.5) * 20; // Ajusta la inclinación en el eje X
+    const yPercent = (y / rect.height - 0.5) * 20; // Ajusta la inclinación en el eje Y
+
+    card.style.transform = `rotateX(${-yPercent}deg) rotateY(${xPercent}deg) scale(1.05)`;
+    
+    // Mueve la capa plástica con el mouse
+    const plasticLayer = card.querySelector('::before');
+    plasticLayer.style.transform = `translate(${xPercent}%, ${yPercent}%)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+  </script>
 
