@@ -1,0 +1,102 @@
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif !important;
+  font-weight: bold;
+  background-image: url('images/7871873.webp');
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav ul li a {
+  position: relative; 
+}
+
+nav ul li a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -25px; 
+  height: 3px; 
+  background-color: black;
+}
+
+.main-container {
+  position: relative; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  width: 50%; 
+  margin: auto; 
+  overflow: hidden; 
+
+}
+
+.main-container a.bg-black {
+  background-color: black !important; 
+}
+
+.call-main {
+  width: 100%; 
+  height: auto; 
+}
+
+.overlay-text {
+  position: absolute; 
+  top: 50%; 
+  left: 75%; 
+  transform: translate(-50%, -50%); 
+  color: black; 
+  text-align: center; 
+  padding: 10px;
+  border-radius: 5px; 
+  font-size: 30px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/plastic_wrap.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; 
+  pointer-events: none;
+  z-index: 1;
+  transform: translateZ(1px); 
+  transition: transform 0.3s ease; 
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2; 
+}
+

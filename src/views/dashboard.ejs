@@ -1,0 +1,153 @@
+<header class="bg-black p-4">
+  <h1 class="text-white text-3xl">DASHBOARD</h1>
+</header>
+
+<!-- Sección para mostrar mensajes flash -->
+<div class="p-6">
+  <% if (success_msg && success_msg.length > 0) { %> <!-- Verifica si hay mensajes -->
+    <div id="success-message"
+      class="flex items-center justify-between bg-green-500 text-white p-4 rounded-lg shadow-md">
+      <span>
+        <%= success_msg[0] %> <!-- Muestra el primer mensaje -->
+      </span>
+      <button id="close-btn" class="text-white font-bold text-lg">&times;</button>
+    </div>
+  <% } %>
+</div>
+
+<main class="p-6">
+  <h2 class="text-2xl font-semibold mb-4 text-white">Todos los Superhéroes</h2>
+  <table class="min-w-full bg-black border border-white rounded-lg shadow-md">
+    <thead>
+      <tr class="bg-white text-black">
+        <th class="py-2 px-4 border-b border-r border-white">Nombre de Superhéroe</th>
+        <th class="py-2 px-4 border-b border-r border-white">Nombre Real</th>
+        <th class="py-2 px-4 border-b border-r border-white">Edad</th>
+        <th class="py-2 px-4 border-b border-r border-white">Planeta</th>
+        <th class="py-2 px-4 border-b border-r border-white">Debilidad</th>
+        <th class="py-2 px-4 border-b border-r border-white">Poderes</th>
+        <th class="py-2 px-4 border-b border-r border-white">Aliados</th>
+        <th class="py-2 px-4 border-b border-r border-white">Enemigos</th>
+        <th class="py-2 px-4 border-b border-white">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% superheroes.forEach(function(superheroe) { %>
+        <tr>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.nombreSuperHeroe %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.nombreReal %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.edad %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.planetaOrigen %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.debilidad %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.poderes.join(', ') %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.aliados.join(', ') %>
+          </td>
+          <td class="py-2 px-4 border-b border-r border-white text-white">
+            <%= superheroe.enemigos.join(', ') %>
+          </td>
+          <td class="py-2 px-4 border-b border-white flex flex-col space-y-2">
+            <a href="api/editSuperhero/<%= superheroe.id %>" class="border border-white bg-blue-500 text-black font-bold py-1 px-2 hover:bg-blue-700 mb-1">
+              Editar
+            </a>
+            <button 
+              data-delete-id="<%= superheroe.id %>" 
+              class="border border-white bg-red-500 text-black font-bold py-1 px-2 hover:bg-red-700">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <!-- Botón para agregar superhéroe -->
+  <div class="mt-4">
+    <a href="/addSuperhero" class="border border-black bg-green-500 text-black font-bold py-2 px-4 hover:bg-green-700">
+      Agregar Superhéroe
+    </a>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Función para agregar event listener al botón de cierre
+  function addCloseButtonListener(button) {
+    button.addEventListener('click', function() {
+      const messageDiv = this.closest('#success-message');
+      if (messageDiv) {
+        messageDiv.style.display = 'none';
+      }
+    });
+  }
+
+  // Manejo de mensaje flash inicial
+  const initialCloseButton = document.getElementById('close-btn');
+  if (initialCloseButton) {
+    addCloseButtonListener(initialCloseButton);
+  }
+
+  // Manejo de eliminación de superhéroes
+  const deleteButtons = document.querySelectorAll('button[data-delete-id]');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const superheroId = this.getAttribute('data-delete-id');
+      
+      // Confirmar eliminación
+      if (confirm('¿Estás seguro de que quieres eliminar este superhéroe?')) {
+        fetch(`/api/heroes/delete/${superheroId}`, {
+          method: 'DELETE'
+        })
+        .then(response => response.json()) // Parsea la respuesta JSON
+        .then(data => {
+          if (data.success) {
+            // Eliminar la fila de la tabla
+            this.closest('tr').remove();
+            
+            // Crear el contenedor del mensaje
+            const successMessageContainer = document.createElement('div');
+            successMessageContainer.innerHTML = `
+              <div id="success-message" class="mt-4 flex items-center justify-between bg-green-500 text-white p-4 rounded-lg shadow-md">
+                <span>${data.message}</span>
+                <button id="close-btn" class="text-white font-bold text-lg">&times;</button>
+              </div>
+            `;
+
+            // Obtener el elemento del mensaje
+            const successMessageElement = successMessageContainer.querySelector('#success-message');
+            
+            // Insertar el mensaje justo después del header
+            const headerElement = document.querySelector('header');
+            if (headerElement && successMessageElement) {
+              headerElement.insertAdjacentElement('afterend', successMessageElement);
+              
+              // Agregar event listener al nuevo botón de cierre
+              const newCloseButton = successMessageElement.querySelector('#close-btn');
+              addCloseButtonListener(newCloseButton);
+            }
+          } else {
+            // Manejar errores
+            throw new Error(data.error || 'No se pudo eliminar el superhéroe');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert(error.message);
+        });
+      }
+    });
+  });
+});
+</script>

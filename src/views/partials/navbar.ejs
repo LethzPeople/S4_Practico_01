@@ -1,0 +1,8 @@
+<nav class="bg-yellow-300 p-4 flex items-center">
+  <img src="/images/superhero.webp" alt="Logo" class="h-10 mr-4">
+  <ul class="flex space-x-4">
+    <li><a href="/" class="text-black uppercase <%= path === '/' ? 'active' : '' %>">Inicio</a></li>
+    <li><a href="/dashboard" class="text-black uppercase <%= path === '/dashboard' ? 'active' : '' %>">Dashboard</a></li>
+    <li><a href="/addSuperhero" class="text-black uppercase <%= path === '/addSuperhero' ? 'active' : '' %>">Agregar Superhéroe</a></li>
+  </ul>
+</nav>

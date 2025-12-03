@@ -1,0 +1,79 @@
+<div class="main-container relative">
+  <img src="/images/call_main.webp" alt="Descripción de la imagen" class="max-w-full h-auto call-main">
+  <p class="overlay-text">Donde podrás crear, buscar y editar tus propios y los ya existentes superhéroes.</p>
+  <a href="#nuestros-heroes" class="absolute mt-2 px-6 py-2 bg-black text-white font-semibold hover:bg-gray-800 transition duration-300" style="right: calc(50% - 380px); top: calc(50% + 150px); z-index: 10;">
+    Conoce nuestros Superheroes
+</a>
+</div>
+
+<section class="py-20" id="nuestros-heroes">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-12 neon-text">Conoce nuestros Superheroes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card p-6 border border-black bg-white shadow-lg">
+        <h3 class="text-xl font-semibold">Spider-Man</h3>
+        <img class="mt-4" src="/images/miles_profile.webp" alt="Spider-Man">
+        <p class="mt-4 text-left">
+          Nombre: Miles Morales<br>
+          Edad: 17 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Falta de experiencia, Responsabilidad familiar<br>
+          Poderes: Telaraña tradicional, Picadura arácnida, Camuflaje, Venom Strike, Agilidad y reflejos sobrehumanos, Capacidad de adherirse a superficies, Sentido arácnido<br>
+          Aliados: Spider-Man(Peter Parker)<br>
+          Enemigos: Powler
+        </p>
+      </div>
+      <div class="card p-6 border border-black bg-white shadow-lg">
+        <h3 class="text-xl font-semibold">Slim Shady</h3>
+        <img class="mt-4" src="/images/slim_shady_profile.webp" alt="Eminem">
+        <p class="mt-4 text-left">
+          Nombre: Marshall Bruce Mathers III<br>
+          Edad: 50 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Críticas y controversias<br>
+          Poderes: Rap excepcional, Habilidad para improvisar<br>
+          Aliados: Dr. Dre<br>
+          Enemigos: Machine Gun Kelly
+        </p>
+      </div>
+      <div class="card p-6 border border-black bg-white shadow-lg">
+        <h3 class="text-xl font-semibold">Raven</h3>
+        <img class="mt-4" src="/images/raven_profile.webp" alt="Raven">
+        <p class="mt-4 text-left">
+          Nombre: Rachel Roth<br>
+          Edad: 16 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Emociones, Relación con su padre<br>
+          Poderes: Telepatía, telequinesis, manipulación de la oscuridad, viaje interdimensional, curación<br>
+          Aliados: Robin<br>
+          Enemigos: Slade
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const xPercent = (x / rect.width - 0.5) * 20; // Ajusta la inclinación en el eje X
+    const yPercent = (y / rect.height - 0.5) * 20; // Ajusta la inclinación en el eje Y
+
+    card.style.transform = `rotateX(${-yPercent}deg) rotateY(${xPercent}deg) scale(1.05)`;
+    
+    // Mueve la capa plástica con el mouse
+    const plasticLayer = card.querySelector('::before');
+    plasticLayer.style.transform = `translate(${xPercent}%, ${yPercent}%)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+  </script>
+

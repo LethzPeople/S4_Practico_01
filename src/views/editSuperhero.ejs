@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Superhéroe</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800 p-6">
+  <header class="bg-white p-4">
+    <h1 class="text-black text-3xl">Editar Superhéroe</h1>
+  </header>
+  <form action="/api/heroes/edit/<%= superheroe.id %>?_method=PUT" method="POST" class="bg-black border-2 border-white p-6 shadow-md">
+    <input type="hidden" name="_method" value="PUT">  
+    <div class="mb-3">
+      <label for="nombreSuperHeroe" class="block text-white font-bold mb-2">Nombre de Superhéroe:</label>
+      <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= superheroe.nombreSuperHeroe %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="nombreReal" class="block text-white font-bold mb-2">Nombre Real:</label>
+      <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="edad" class="block text-white font-bold mb-2">Edad:</label>
+      <input type="number" id="edad" name="edad" value="<%= superheroe.edad %>" required min="0" class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="planetaOrigen" class="block text-white font-bold mb-2">Planeta de Origen:</label>
+      <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= superheroe.planetaOrigen %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="debilidad" class="block text-white font-bold mb-2">Debilidad:</label>
+      <input type="text" id="debilidad" name="debilidad" value="<%= superheroe.debilidad %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="poderes" class="block text-white font-bold mb-2">Poderes (separados por comas):</label>
+      <input type="text" id="poderes" name="poderes" value="<%= superheroe.poderes.join(', ') %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="aliados" class="block text-white font-bold mb-2">Aliados:</label>
+      <input type="text" id="aliados" name="aliados" value="<%= superheroe.aliados.join(', ') %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="mb-4">
+      <label for="enemigos" class="block text-white font-bold mb-2">Enemigos:</label>
+      <input type="text" id="enemigos" name="enemigos" value="<%= superheroe.enemigos.join(', ') %>" required class="border border-black p-2 w-full bg-gray-200">
+    </div>
+    <div class="flex space-x-4">
+      <a href="/dashboard" class="border border-white bg-red-500 text-black font-bold py-2 px-4 border border-white">Cancelar</a>
+      <button type="submit" class="border border-white bg-green-500 text-black font-bold py-2 px-4">Actualizar Superhéroe</button>
+    </div>
+  </form>
+</body>
+</html>
