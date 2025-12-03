@@ -36,15 +36,14 @@ El proyecto está construido sobre **Node.js**, utilizando una arquitectura de c
 
 ### 🔹 Back-end & Infraestructura
 
-| Tecnología | 
-|-----------|
-| **Node.js** | 
-| **Express.js** | 
-| **MongoDB** | 
-| **Mongoose** | 
-| **IRepository** | 
-| **dotenv** | 
-| **Render** | 
+
+- ✔️ **Node.js** 
+- ✔️ **Express.js** 
+- ✔️ **MongoDB** 
+- ✔️ **Mongoose** 
+- ✔️ **IRepository** 
+- ✔️ **dotenv** 
+- ✔️ **Render** 
 
 ---
 
@@ -52,9 +51,9 @@ El proyecto está construido sobre **Node.js**, utilizando una arquitectura de c
 
 | Componente | Descripción |
 |------------|-------------|
-| **EJS** | Motor de plantillas para generar HTML dinámico del lado del servidor. |
-| **Patrón MVC + Capas** | Organización del proyecto en **routes, controllers, services, repositories y models**. |
-| **CSS** | Estilos básicos para la interfaz de usuario. |
+- ✔️ **EJS** 
+- ✔️ **Patrón MVC + Capas** 
+- ✔️ **CSS** 
 
 ---
 
