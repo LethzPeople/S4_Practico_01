@@ -49,8 +49,6 @@ El proyecto está construido sobre **Node.js**, utilizando una arquitectura de c
 
 ### 🔹 Front-end & Arquitectura
 
-| Componente | Descripción |
-|------------|-------------|
 - ✔️ **EJS** 
 - ✔️ **Patrón MVC + Capas** 
 - ✔️ **CSS** 
