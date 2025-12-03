@@ -70,7 +70,7 @@ El sistema está organizado siguiendo el patrón **MVC con arquitectura en capas
 
 La aplicación se encuentra desplegada en **Render** y puede probarse desde el siguiente link público:
 
-👉 https://superheroservice.onrender.com/#nuestros-heroes
+👉 https://superheroservice.onrender.com/
 
 ---
 
